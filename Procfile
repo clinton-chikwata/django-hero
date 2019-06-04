@@ -1,3 +1,2 @@
-release: python manage.py makemigrations
 release: python manage.py migrate --no-input
-web: gunicorn django_project.wsgi
+web: gunicorn django_project.wsgi --log-file 
