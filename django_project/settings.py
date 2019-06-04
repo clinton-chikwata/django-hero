@@ -86,6 +86,9 @@ DATABASES = {
         'NAME': 'clintondb',
         'USER': 'kiki',
         'PASSWORD': 'djangopass',
+        'HOST':'localhost'
+        'PORT':'5432'
+
        
     }
 }
