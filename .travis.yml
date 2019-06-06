@@ -5,9 +5,13 @@ sudo: false
 python:
   - "3.6"
 
+services:
+  - postgresql
+
+
 # Match postgresql version to that in conf/pillar/project.sls
-addons:
-  postgresql: "11"
+# addons:
+#  postgresql: "11"
 
 # cache:
 #   directories:
@@ -26,6 +30,7 @@ install:
   
 
 before_script:
+  psql -c 'create database travis_ci_test;' -U postgres
   # - createdb --encoding=UTF-8 {{ django_project }} --username=postgres --owner=`whoami`
   # Uncomment for Requires.IO pushes of develop and master merges (not pull-request builds)
   # Requires the $REQUIRES_IO_TOKEN environment variable defined at Travis CI for this project
@@ -35,7 +40,7 @@ before_script:
   # - psql service_info -c "CREATE EXTENSION postgis;" -U postgres
 
 script:
-  - python manage.py makemigrations 
+  - python manage.py migrate
   # --dry-run | grep 'No changes detected' || (echo 'There are changes which require migrations.' && exit 1)
   - python manage.py test
   # - coverage report -m --fail-under 80
