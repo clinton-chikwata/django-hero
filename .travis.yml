@@ -42,5 +42,5 @@ before_script:
 script:
   - python manage.py migrate
   # --dry-run | grep 'No changes detected' || (echo 'There are changes which require migrations.' && exit 1)
-  - python manage.py test
+  - python manage.py test blog 
   # - coverage report -m --fail-under 80
