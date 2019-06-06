@@ -3,32 +3,30 @@ language: python
 sudo: false
 
 python:
-  - "3.5"
+  - "3.6"
 
 # Match postgresql version to that in conf/pillar/project.sls
 addons:
   postgresql: "11"
 
-cache:
-  directories:
-    - $HOME/.cache/pip
-    - $HOME/.npm
-    - $HOME/.nvm
-    - $HOME/.cache/node_modules
-    - $HOME/.cache/venvs
+# cache:
+#   directories:
+#     - $HOME/.cache/pip
+#     - $HOME/.npm
+#     - $HOME/.nvm
+#     - $HOME/.cache/node_modules
+#     - $HOME/.cache/venvs
 
 env:
   - DJANGO_SETTINGS_MODULE="{{ project_name }}.settings.dev"
 
 install:
   - pip install -U pip
-  - pip install -U -r requirements/dev.txt
-  - nvm install 6.11
-  - nvm use 6.11
-  - npm install
+  - pip install -U -r requirements.txt
+  
 
 before_script:
-  - createdb --encoding=UTF-8 {{ project_name }} --username=postgres --owner=`whoami`
+  - createdb --encoding=UTF-8 {{ django_project }} --username=postgres --owner=`whoami`
   # Uncomment for Requires.IO pushes of develop and master merges (not pull-request builds)
   # Requires the $REQUIRES_IO_TOKEN environment variable defined at Travis CI for this project
   # See developer documentation section on depdency tracking for more information.
@@ -37,6 +35,7 @@ before_script:
   # - psql service_info -c "CREATE EXTENSION postgis;" -U postgres
 
 script:
-  - python manage.py makemigrations --dry-run | grep 'No changes detected' || (echo 'There are changes which require migrations.' && exit 1)
-  - coverage run manage.py test
-  - coverage report -m --fail-under 80
+  - python manage.py makemigrations 
+  # --dry-run | grep 'No changes detected' || (echo 'There are changes which require migrations.' && exit 1)
+  - python manage.py test
+  # - coverage report -m --fail-under 80
