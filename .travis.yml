@@ -18,7 +18,7 @@ before_script:
 
 script:
   - python manage.py migrate
-  - python manage.py test rest
+  - python manage.py test blog
 
 # deploy:
 #   provider: heroku
