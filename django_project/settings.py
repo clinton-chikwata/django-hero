@@ -89,8 +89,8 @@ if 'TRAVIS' in os.environ:
         'default': {
             'ENGINE':   'django.db.backends.postgresql',
             'NAME':     'clintondb',
-            'USER':     'kiki',
-            'PASSWORD': 'djangopass',
+            'USER':     'postgres',
+            'PASSWORD': '',
             'HOST':     'localhost',
             'PORT':     '',
         }
