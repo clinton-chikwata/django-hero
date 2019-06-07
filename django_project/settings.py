@@ -84,9 +84,19 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
-DATABASES = {}
-DATABASES['default'] = dj_database_url.config(default='postgres://localhost/clintondb',conn_max_age=600)
+if 'TRAVIS' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE':   'django.db.backends.postgresql',
+            'NAME':     'clintondb',
+            'USER':     'kiki',
+            'PASSWORD': 'djangopass',
+            'HOST':     'localhost',
+            'PORT':     '',
+        }
+}
+# DATABASES = {}
+# DATABASES['default'] = dj_database_url.config(default='postgres://localhost/clintondb',conn_max_age=600)
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.pyscopg2',
@@ -144,15 +154,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-STATIC_ROOT  = os.path.join(PROJECT_ROOT, 'staticfiles')
+# STATIC_ROOT  = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
 # Extra lookup directories for collectstatic to find static files
 STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
-
-
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
