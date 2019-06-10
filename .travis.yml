@@ -20,7 +20,7 @@ script:
   - python manage.py migrate
   - python manage.py test blog
 
-# deploy:
-#   provider: heroku
-#   api_key:
-#     secure: "385b3e25-f8d4-4f8a-b232-f73776b4884d"
+deploy:
+  provider: heroku
+  api_key:
+    secure: "265eba55-6a34-4345-baac-fe8b96d79a21"
