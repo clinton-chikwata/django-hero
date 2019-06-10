@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 
 
-
+#testing whether blog model attributes have been created
 class PostsTest(TestCase):
     def createPost(self, title="Avengers", content="Thanos",date_posted =timezone.now() ,author = 'albert'):
         return Post.objects.create(
@@ -14,13 +14,15 @@ class PostsTest(TestCase):
             date_posted=date_posted,
             author=author
          )
-    #testing the model
+    #testing if data has been inserted
     def test_Posts_creation(self):
         created = self.createPost()
         self.assertTrue(isinstance(created, Post))
         self.assertEqual(created.__str__(), created.title)
         self.assertEqual(created.content, 'Thanos')
-    #testing the home view
+   
+   
+    #testing whether data is rendered on the blog-home view
 
     def test_view_home(self):
         created = self.createPost()

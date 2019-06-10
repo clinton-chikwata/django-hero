@@ -45,9 +45,6 @@ SECRET_KEY = 'exhlfdat&vfum(-34*c2uroi(($ww(yo$9pv98=e6p^gl(-eoj'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-	                   
-     
-#265eba55-6a34-4345-baac-fe8b96d79a21
 
 # Application definition
 
