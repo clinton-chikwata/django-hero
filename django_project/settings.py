@@ -12,15 +12,27 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 import dj_database_url 
-import dotenv
+# import dotenv
+
+if 'TRAVIS' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE':   'django.db.backends.postgresql',
+            'NAME':     'gecko',
+            'USER':     'postgres',
+            'PASSWORD': 'djangopass',
+            'HOST':     'localhost',
+            'PORT':     '5432',
+        }
+}
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-dotenv_file = os.path.join(BASE_DIR, ".env")
-if os.path.isfile(dotenv_file):
-    dotenv.load_dotenv(dotenv_file)
+# dotenv_file = os.path.join(BASE_DIR, ".env")
+# if os.path.isfile(dotenv_file):
+#     dotenv.load_dotenv(dotenv_file)
 
 
 # Quick-start development settings - unsuitable for production
@@ -32,7 +44,7 @@ SECRET_KEY = 'exhlfdat&vfum(-34*c2uroi(($ww(yo$9pv98=e6p^gl(-eoj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','kikiapp.herokuapp.com']
+ALLOWED_HOSTS = []
 	                   
      
 #265eba55-6a34-4345-baac-fe8b96d79a21
@@ -59,7 +71,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'django_project.urls'
@@ -84,29 +96,17 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-if 'TRAVIS' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE':   'django.db.backends.postgresql',
-            'NAME':     'clintondb',
-            'USER':     'postgres',
-            'PASSWORD': '',
-            'HOST':     'localhost',
-            'PORT':     '',
-        }
-}
+
 # DATABASES = {}
 # DATABASES['default'] = dj_database_url.config(default='postgres://localhost/clintondb',conn_max_age=600)
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.pyscopg2',
-#         'NAME': 'clintondb',
-#         'USER': 'kiki',
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'gecko',
+#         'USER': 'postgres',
 #         'PASSWORD': 'djangopass',
 #         'HOST':'localhost',
 #         'PORT':'5432',
-
-       
 #     }
 # }
 
@@ -158,9 +158,9 @@ STATIC_ROOT  = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_URL = '/static/'
 
 # Extra lookup directories for collectstatic to find static files
-STATICFILES_DIRS = (
-    os.path.join(PROJECT_ROOT, 'static'),
-)
+# STATICFILES_DIRS = (
+#     os.path.join(PROJECT_ROOT, 'static'),
+# )
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
