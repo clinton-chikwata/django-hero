@@ -14,17 +14,17 @@ import os
 import dj_database_url 
 # import dotenv
 
-# if 'TRAVIS' in os.environ:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE':   'django.db.backends.postgresql',
-#             'NAME':     'clintondb',
-#             'USER':     'kiki',
-#             'PASSWORD': 'djangopass',
-#             'HOST':     'localhost',
-#             'PORT':     '5432',
-#         }
-# }
+if 'TRAVIS' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE':   'django.db.backends.postgresql',
+            'NAME':     'gecko',
+            'USER':     'kiki',
+            'PASSWORD': 'djangopass',
+            'HOST':     'localhost',
+            'PORT':     '5432',
+        }
+}
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -99,16 +99,16 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 
 # DATABASES = {}
 # DATABASES['default'] = dj_database_url.config(default='postgres://localhost/clintondb',conn_max_age=600)
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'gecko',
-        'USER': 'kiki',
-        'PASSWORD': 'djangopass',
-        'HOST':'localhost',
-        'PORT':'5432',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'gecko',
+#         'USER': 'postgres',
+#         'PASSWORD': 'djangopass',
+#         'HOST':'localhost',
+#         'PORT':'5432',
+#     }
+# }
 
 # DATABASES = {
 #     'default': {
