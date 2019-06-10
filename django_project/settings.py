@@ -19,7 +19,7 @@ if 'TRAVIS' in os.environ:
         'default': {
             'ENGINE':   'django.db.backends.postgresql',
             'NAME':     'gecko',
-            'USER':     'kiki',
+            'USER':     'postgres',
             'PASSWORD': 'djangopass',
             'HOST':     'localhost',
             'PORT':     '5432',
